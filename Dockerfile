@@ -17,8 +17,9 @@
 #limitations under the License.
 ##########################################################
 
+ARG PLATFORM
 
-FROM golang:1.17.7-alpine3.15 as gobuilder
+FROM ${PLATFORM}/golang:1.17.7-alpine3.15 as gobuilder
 
 # Install git.
 
@@ -34,14 +35,14 @@ COPY . .
 
 # Build the binary.
 
-RUN go mod download && \
+RUN go mod download &&\
     go env -w GOPRIVATE=github.com/kubeslice && \
     CGO_ENABLED=1 GOOS=linux GOARCH=amd64 GO111MODULE=on go build -a -o bin/kubeslice-gw-sidecar main.go
 
 
 # Build reduced image from base alpine
 
-FROM alpine:3.15
+FROM ${PLATFORM}/alpine:3.15
 
 # tc - is needed for traffic control and shaping on the sidecar.  it is part of the iproute2
 
