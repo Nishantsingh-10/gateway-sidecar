@@ -42,7 +42,7 @@ RUN go mod download && \
 
 # Build reduced image from base alpine
 
-FROM ${PLATFORM}/golang:1.17.7-alpine3.15
+FROM ${PLATFORM}/alpine:3.15
 
 # tc - is needed for traffic control and shaping on the sidecar.  it is part of the iproute2
 
