@@ -37,8 +37,8 @@ WorkerClusters:
   NodeIP: ${IP2}
 WorkerChartOptions:
   SetStrValues:
-    "operator.image": "gateway-sidecar"
-    "operator.tag": "e2e-latest"
+    "gateway.image": "gw-sidecar"
+    "gateway.tag": "e2e-latest"
 TestSuitesEnabled:
   HubSuite: true
   WorkerSuite: true
